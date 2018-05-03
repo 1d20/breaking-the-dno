@@ -13,5 +13,5 @@ class Metronome(Model):
     class Meta:
         database = DB
 
-DB.create_tables(Metronome)
+DB.create_tables([Metronome])
 DB.close()
