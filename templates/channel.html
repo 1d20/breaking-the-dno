@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>	
+        <title>Names</title>
+    </head>
+    <body>
+		<b>Metronomes:</b>
+		<p>
+		<ul>
+			{% for row in rows %}			
+					<li> 
+						<a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
+						<a href="/metronome/delete/{{row.id}}"> <input type="button" value="X"/></a>
+					</li>
+			{% endfor %}
+		</ul>
+		<p>
+		<form action="{{ url_for('channel_create') }}" method="post">
+			<input type="text" name="name" value="Назва метронома" />
+			<input type="submit" value="Create"/>
+		</form>
+		</p>
+    </body>
+</html>
