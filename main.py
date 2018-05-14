@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from models import Metronome
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path="/static")
 
 
 @app.route('/metronome/channel')
@@ -12,16 +12,33 @@ def channel():
 
 @app.route('/metronome/channel/<ID>')
 def channel_id(ID):
-    return render_template('channel_id.html', ID=ID)
+    rows = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
+    bpm = Metronome.get(Metronome.id == ID).bpm
+    return render_template('channel_id.html', ID=ID, rows=rows, bpm=bpm)
 
 @app.route('/metronome/delete/<ID>')
 def channel_delete_id(ID):
     query = Metronome.delete().where(Metronome.id == ID)
     query.execute()
-    return channel()
+    return redirect(url_for('channel'))
 
 @app.route('/metronome/create', methods=['POST'])
 def channel_create():
     name = request.form['name']
     Metronome.get_or_create(name=name, bpm=40)
-    return channel()
+    return redirect(url_for('channel'))
+
+@app.route('/metronome/update/<ID>', methods=['POST'])
+def bpm_save(ID):
+    bpm = request.form['number']
+    query = Metronome.update(bpm=bpm).where(Metronome.id == ID)
+    query.execute()
+    return redirect(url_for('channel'))
+
+@app.route("/") 
+def hello(): 
+    return render_template("channel_id.html")
+
+
+if (__name__ == "__main__"): 
+    app.run(port = 5000) 
