@@ -36,8 +36,8 @@ def bpm_save(ID):
     return redirect(url_for('channel'))
 
 @app.route("/") 
-def hello(): 
-    return redirect(url_for('channel'))
+def hello():
+    return render_template('main.html')
 
 
 if (__name__ == "__main__"): 
