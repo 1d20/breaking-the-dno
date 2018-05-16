@@ -23,5 +23,14 @@ class Lyrics(Model):
     class Meta:
         database = DB
 
-DB.create_tables([Metronome, Lyrics])
+
+class Tabs(Model):
+    name = CharField()
+    link = CharField()
+
+
+    class Meta:
+        database = DB
+
+DB.create_tables([Metronome, Lyrics, Tabs])
 DB.close()

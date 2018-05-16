@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import Metronome, Lyrics
+from models import Metronome, Lyrics, Tabs
 
 app = Flask(__name__,static_url_path="/static")
 
