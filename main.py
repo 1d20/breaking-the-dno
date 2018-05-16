@@ -39,6 +39,9 @@ def bpm_save(ID):
 def hello():
     return render_template('main.html')
 
+@app.route("/metronome") 
+def metronome():
+    return render_template('metronome.html')
 
 if (__name__ == "__main__"): 
     app.run(port = 5000) 
