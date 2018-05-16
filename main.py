@@ -9,12 +9,12 @@ def channel():
     rows = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
     return render_template('channel.html', rows=rows)
 
-
 @app.route('/metronome/channel/<ID>')
 def channel_id(ID):
     rows = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
     bpm = Metronome.get(Metronome.id == ID).bpm
-    return render_template('channel_id.html', ID=ID, rows=rows, bpm=bpm)
+    name = Metronome.get(Metronome.id == ID).name
+    return render_template('channel_id.html', ID=ID, rows=rows, bpm=bpm, name=name)
 
 @app.route('/metronome/delete/<ID>')
 def channel_delete_id(ID):
@@ -37,7 +37,7 @@ def bpm_save(ID):
 
 @app.route("/") 
 def hello(): 
-    return render_template("channel_id.html")
+    return redirect(url_for('channel'))
 
 
 if (__name__ == "__main__"): 

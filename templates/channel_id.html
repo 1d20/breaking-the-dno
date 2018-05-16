@@ -1,90 +1,18 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ID}}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <style>
-.example {
-	font-family: Arial;
-	font-size: 12px;
-}
-
-.status {
-	width: 100px;
-	height: 200px;
-	padding: 10px;
-	overflow-y: auto;
-}
-
-.statusline {
-	font-size: 10px;
-	background-color: #E0E0E0;
-	margin: 3px 0;
-	padding: 2px;
-}
-
-.metr_input {
-   width: 40px;
-   margin-right: 10px;
-   text-align: center;
-}
-
-#count {
-	width: 50px;
-	display: inline-block;
-	text-align: right;
-}
-        </style>
+        <link href="/static/style.css" rel="stylesheet">
     </head>
     <body>
-    	<table class="example">
-    		<tr>
-    			<td><div id="metronome_container"></div></td>
-    			<td><div class="status"></div></td>
-    		</tr>
-    		<tr>
-    			<td colspan=2 id="inputs"></td>
-			</tr>
-		</table>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="static/metronome.js"></script>
-        <script>
-/*global $ Raphael soundManager metronome*/
-
-function tick(t) {
-    $("<div />").html(t % 2 === 1 ? "Tick" : "Tock").addClass("statusline").appendTo(".status");
-	$("#count").html(t);    
-}
-
-function done() {
-    $("<div />").html("Done!").addClass("statusline").css("background-color", "#FFFF99").appendTo(".status");
-    $("#startstop").html("start");
-}
-
-var paper = Raphael("metronome_container", 200, 200);
-
-var m = metronome({
-    len: 200,
-    angle: 20,
-    tick: tick,
-    complete: done,
-    paper: paper,
-    audio: "https://github.com/wilson428/metronome/blob/master/tick.wav?raw=true"
-});
-
-m.make_input("#inputs");
-
-m.shapes().outline.attr("fill", "#0962ba");
-m.shapes().arm.attr("stroke", "#EEE");
-        </script>
-                BMP:
+        <form>
+            <h1>BMP {{name}}:</h1>
+            <div><input type="number" name="bpm" value={{bpm}} size="3" /> bpm</div>
+            <div class="start btn">Start</div>
+            <div class="stop btn">Stop</div>
+            <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="/static/sound.js"></script>
+        </form>
+        <p> Change BMP {{name}}:</p>
         <form action="/metronome/update/{{ID}}" method="post">
             <input type="number" name="number" value={{bpm}} maxlength=3 min=40 max=218 />
             <input type="submit" value="Save"/>
