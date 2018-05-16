@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>  
+        <title>Tabs</title>
+    </head>
+    <body>
+        <b>Tabs:</b>
+        <p>
+        <ul>
+            {% for row in rows %}           
+                    <li> 
+                        <a href="/tabs/{{row.id}}"> {{row.name}}</a>  
+                        <a href="/tabs/delete/{{row.id}}"> <input type="button" value="X"/></a>
+                    </li>
+            {% endfor %}
+        </ul>
+        <p>
+        <form action="/tabs/create" method="post">
+            <input type="text" name="name" value="Назва табу" />
+            <input type="text" name="content" value="Посилання" />
+            <input type="submit" value="Create"/>
+        </form>
+        </p>
+    </body>
+</html>

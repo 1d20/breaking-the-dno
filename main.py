@@ -67,5 +67,28 @@ def lyrics_id(ID):
     text = Lyrics.get(Lyrics.id == ID).text
     return render_template('lyrics_id.html', title_text=title_text, text=text)
 
+@app.route("/tabs") 
+def tabs():
+    rows = list(Tabs.select(Tabs.name, Tabs.id))
+    return render_template('tabs.html', rows=rows)
+
+@app.route('/tabs/create', methods=['POST'])
+def tabs_create():
+    name = request.form['name']
+    link = request.form['content']
+    Tabs.get_or_create(name=name, link=link)
+    return redirect(url_for('tabs'))
+
+@app.route('/tabs/delete/<ID>')
+def tabs_delete_id(ID):
+    query = Tabs.delete().where(Tabs.id == ID)
+    query.execute()
+    return redirect(url_for('tabs'))
+
+@app.route('/tabs/<ID>')
+def tabs_id(ID):
+    link = Tabs.get(Tabs.id == ID).link
+    return render_template('tabs_id.html', link=link)
+
 if (__name__ == "__main__"): 
     app.run(port = 5000) 
