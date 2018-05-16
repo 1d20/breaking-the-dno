@@ -61,5 +61,11 @@ def lyrics_create():
     Lyrics.get_or_create(title_text=title_text, text=text)
     return redirect(url_for('lyrics'))
 
+@app.route('/lyrics/<ID>')
+def lyrics_id(ID):
+    title_text = Lyrics.get(Lyrics.id == ID).title_text
+    text = Lyrics.get(Lyrics.id == ID).text
+    return render_template('lyrics_id.html', title_text=title_text, text=text)
+
 if (__name__ == "__main__"): 
     app.run(port = 5000) 
