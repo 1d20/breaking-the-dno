@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>  
+        <title>lyrics</title>
+    </head>
+    <body>
+        <b>Lyrics:</b>
+        <p>
+        <ul>
+            {% for row in rows %}           
+                    <li> 
+                        <a href="/lyrics/{{row.id}}"> {{row.title_text}}</a>  
+                        <a href="/lyrics/delete/{{row.id}}"> <input type="button" value="X"/></a>
+                    </li>
+            {% endfor %}
+        </ul>
+        <p>
+        <form action="/lyrics/create" method="post">
+            <input type="text" name="name" value="Назва пісні" />
+            <input type="text" content="content" value="Текст" />
+            <input type="submit" value="Create"/>
+        </form>
+        </p>
+    </body>
+</html>
