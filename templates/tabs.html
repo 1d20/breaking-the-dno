@@ -9,7 +9,7 @@
         <ul>
             {% for row in rows %}           
                     <li> 
-                        <a href="/tabs/{{row.id}}"> {{row.name}}</a>  
+                        <a href="{{row.link}}"> {{row.name}}</a>  
                         <a href="/tabs/delete/{{row.id}}"> <input type="button" value="X"/></a>
                     </li>
             {% endfor %}

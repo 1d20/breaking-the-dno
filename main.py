@@ -69,7 +69,7 @@ def lyrics_id(ID):
 
 @app.route("/tabs") 
 def tabs():
-    rows = list(Tabs.select(Tabs.name, Tabs.id))
+    rows = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
     return render_template('tabs.html', rows=rows)
 
 @app.route('/tabs/create', methods=['POST'])
@@ -85,10 +85,6 @@ def tabs_delete_id(ID):
     query.execute()
     return redirect(url_for('tabs'))
 
-@app.route('/tabs/<ID>')
-def tabs_id(ID):
-    link = Tabs.get(Tabs.id == ID).link
-    return render_template('tabs_id.html', link=link)
 
 if (__name__ == "__main__"): 
     app.run(port = 5000) 
