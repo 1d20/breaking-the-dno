@@ -2,37 +2,68 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">  
-        <title>lyrics</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.css">  
+        <link rel="stylesheet" href="/static/bootstrap_override.css">  
+        <title>Lyrics</title>
     </head>
     <body>
-    <div class="row" >
-        <div class="col-md-4">
-        <h1>Lyrics:</h1>
-        <p>
-        <ul>
-            {% for row in rows %}           
-                    <li> 
-                        <a href="/lyrics/{{row.id}}"> {{row.title_text}}</a>  
-                        <a href="/lyrics/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="x"/></a>
-                    </li>
-            {% endfor %}
-        </ul>
-        <p>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Breaking The Dno</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/lyrics">Lyrics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tabs">Tabs</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-md-2">
-        <form action="/lyrics/create" method="post">
-            <input type="text" name="name" value="Title of the song" />
-            <h2>Text:</h2>
-            <p><textarea name="content" cols="40" rows="15"></textarea></p>
-            <input type="submit" class="btn btn-primary" value="Create"/>
-        </form>
-        </p>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </nav>
+
+    <div class="container">
+        <div class="row"><br></div>
+        <div class="row" >
+            <div class="col-md-4">
+                <h1>Lyrics</h1>
+                <table class="table table-hover">
+                    <tbody>
+                        {% for row in rows %}
+                        <tr class="table-default">
+                            <th scope="row"><a href="/lyrics/{{row.id}}"> {{row.title_text}}</a></th>
+                            <td>
+                                <a href="/lyrics/delete/{{row.id}}"> 
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <form action="/lyrics/create" method="post">
+                    <fieldset>
+                        <legend>Create new song</legend>
+                        <div class="form-group">
+                            <label for="sTitle">Title</label>
+                            <input type="text" class="form-control" name="name" id="sTitle" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="sText">Text</label>
+                            <textarea class="form-control" name="content" id="sText" cols="40" rows="10"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </fieldset>
+                </form>
+
+
+            </div>
+            <div class="col-md-2"></div>
         </div>
-        </div>
+    </div>
     </body>
 </html>
