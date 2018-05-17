@@ -75,7 +75,6 @@ def lyrics_create():
 def lyrics_id(ID):
     title_text = Lyrics.get(Lyrics.id == ID).title_text
     text = Lyrics.get(Lyrics.id == ID).text
-    print(text)
     return render_template('lyrics_id.html', title_text=title_text, text=text)
 
 
