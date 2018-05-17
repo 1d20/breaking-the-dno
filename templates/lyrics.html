@@ -1,26 +1,38 @@
 <!doctype html>
 <html>
-    <head>  
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">  
         <title>lyrics</title>
     </head>
     <body>
-        <b>Lyrics:</b>
+    <div class="row" >
+        <div class="col-md-4">
+        <h1>Lyrics:</h1>
         <p>
         <ul>
             {% for row in rows %}           
                     <li> 
                         <a href="/lyrics/{{row.id}}"> {{row.title_text}}</a>  
-                        <a href="/lyrics/delete/{{row.id}}"> <input type="button" value="X"/></a>
+                        <a href="/lyrics/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="x"/></a>
                     </li>
             {% endfor %}
         </ul>
         <p>
+        </div>
+        <div class="col-md-2">
         <form action="/lyrics/create" method="post">
             <input type="text" name="name" value="Title of the song" />
-            <p>Lyrics:</p>
-            <p><textarea name="content" cols="40" rows="20"></textarea></p>
-            <input type="submit" value="Create"/>
+            <h2>Text:</h2>
+            <p><textarea name="content" cols="40" rows="15"></textarea></p>
+            <input type="submit" class="btn btn-primary" value="Create"/>
         </form>
         </p>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        </div>
+        </div>
     </body>
 </html>
