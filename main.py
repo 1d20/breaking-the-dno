@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import Metronome, Lyrics, Tabs
+import datetime
+from datetime import timedelta
+import math 
+import time
 
 app = Flask(__name__, static_url_path="/static")
 
@@ -98,6 +102,10 @@ def tabs_delete_id(ID):
     query.execute()
     return redirect(url_for('tabs'))
 
+
+@app.route('/bpm_test')
+def bpm_calc():
+    return render_template('metronome_test.html')
 
 if (__name__ == "__main__"):
     app.run(port = 5000) 
