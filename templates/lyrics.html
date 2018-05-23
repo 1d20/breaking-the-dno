@@ -1,28 +1,11 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.css">  
-        <link rel="stylesheet" href="/static/bootstrap_override.css">  
-        <title>Lyrics</title>
+        {% extends 'base.html' %}
+        <h1>{% block title %}Lyrics{% endblock %}</h1>
     </head>
     <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/">Breaking The Dno</a>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/lyrics">Lyrics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/tabs">Tabs</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container">
+    {% block content %}
         <div class="row"><br></div>
         <div class="row" >
             <div class="col-md-4">
@@ -64,6 +47,6 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-    </div>
+    {% endblock %}
     </body>
 </html>

@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import Metronome, Lyrics, Tabs
-import datetime
-from datetime import timedelta
-import math 
-import time
+
 
 app = Flask(__name__, static_url_path="/static")
 

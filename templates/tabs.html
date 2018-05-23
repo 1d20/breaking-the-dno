@@ -1,14 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        <title>Tabs</title>
+        {% extends 'base.html' %}
+        <h1>{% block title %}Tabs{% endblock %}</h1>
     </head>
     <body>
+    {% block content %}
+        <div class="row"><br></div>
+        <div class="row" >
+            <div class="col-md-4">
         <h2>Tabs:</h2>
-        <p>
         <ul>
             {% for row in rows %}           
                     <li> 
@@ -17,13 +18,17 @@
                     </li>
             {% endfor %}
         </ul>
-        <p>
-        <form action="/tabs/create" method="post">
-            <input type="text" name="name" value="Name tab" />
-            <input type="text" name="content" value="link" />
-            <input type="submit" class="btn btn-primary" value="Create"/>
-        </form>
-        </p>
+            </div>
+                <div class="col-md-6">
+                    <form action="/tabs/create" method="post">
+                        <input type="text" name="name" value="Name tab" />
+                        <input type="text" name="content" value="link" />
+                        <input type="submit" class="btn btn-primary" value="Create"/>
+                    </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    {% endblock %}
     </body>
 </html>
