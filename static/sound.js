@@ -216,7 +216,7 @@ function beep() {
   startTone(200);
 }
 
-function cal_metronome(){
+function calMetronome(){
 	var form = document.getElementById('button')
 	var bpm = form['value']
 	var sec = 60/bpm
@@ -238,8 +238,20 @@ $('.start').click(function() {
   $t=setInterval(beep,$newbpm);
 });
 
-$(document).ready(function(){ // функція буде виконуватись при повній загрузці сторінки
-  setTimeout(function(){
-      $('#click-block').click(); 
-  },cal_metronome()); //час затримки кліка 
-});
+function startBpm() {
+  clearInterval($t);
+  var form = document.getElementById('bpm')
+  var bpm = form['value']
+  $newbpm = 1000/(bpm/60);
+  $t=setInterval(beep,$newbpm);
+};
+
+function startBpmMetronome() {
+  clearInterval($t);
+  $newbpm = 1000/(80/60);
+  $t=setInterval(beep,$newbpm);
+};
+
+function setTime(){
+	setTimeout(startBpmMetronome(), calMetronome())
+};
