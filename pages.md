@@ -2,9 +2,9 @@
 ***
 ###		/metronome
 ####	/metronome/channel
-####	/metronome/channel/<ID>
+####	/metronome/channel/ID
 ***
 ### 	/lyrics
-####	/lyrics/<ID>
+####	/lyrics/ID
 ***
 ###		/tabs
