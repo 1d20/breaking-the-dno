@@ -1,7 +1,7 @@
 # breaking-the-dno
 Official web service
 
-## [Description of the project]()
+## [Description of the project](https://github.com/1d20/breaking-the-dno/blob/master/about.md)
 
 ## Start project:
 
