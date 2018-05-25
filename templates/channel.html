@@ -5,13 +5,13 @@
         <h1>{% block title %}Channels{% endblock %}</h1>
     </head>
     <body>
-        {% block content %}
+	{% block content %}
         <div class="row" >
         <div class="col-md-4">
 		<h2>Metronomes:</h2>
 		<p>
 		<ul>
-			{% for row in rows %}			
+			{% for row in rows %}
 					<li> 
 						<a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
 						<a href="/metronome/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
@@ -21,14 +21,14 @@
 		<p>
 		</div>
         <div class="col-md-2">
-		<form action="{{ url_for('channel_create') }}" method="post">
-			<input type="text" name="name" value="Name of the metronome" />
-			<input type="submit" class="btn btn-primary" value="Create"/>
-		</form>
+			<form action="{{ url_for('channel_create') }}" method="post">
+				<input type="text" name="name" value="Name of the metronome" />
+				<input type="submit" class="btn btn-primary" value="Create"/>
+			</form>
 		</p>
 		</div>
         </div>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-		{% endblock %}
+	{% endblock %}
     </body>
 </html>
