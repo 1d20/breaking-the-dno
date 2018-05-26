@@ -1,5 +1,6 @@
 <!doctype html>
     <head>
+    {% block head %}
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.css">  
         <link rel="stylesheet" href="/static/bootstrap_override.css">
@@ -11,6 +12,7 @@
           background-repeat: no-repeat;
         }
         </style>
+    {% endblock %}
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
