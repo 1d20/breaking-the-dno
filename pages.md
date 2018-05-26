@@ -8,3 +8,6 @@
 ####	/lyrics/ID - the text of the song
 ***
 ###		/tabs - list of links
+***
+###	    /songs - list of songs
+####    /songs/ID - name, lyrics, listening to the metronome of the song
