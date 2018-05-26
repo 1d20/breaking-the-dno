@@ -6,21 +6,57 @@
     </head>
     <body>
     {% block content %}
-        <div class="col-md-8">
-        <h2>Songs:</h2>
-        <p>
-        <ul>
-            {% for row in rows %}
-                    <li> 
-                        <a href="/songs/{{row.id}}"> {{row.name}}</a>
-                        <a href="/lyrics/{{row.text.id}}"> - Lyrics </a>  
-                        <a href="{{row.tabs.link}}"> Tabs </a>  
-                        <a href="/metronome/channel/{{row.bpm.id}}"> {{row.bpm.bpm}}</a>
-                        <a href="/songs/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
-                    </li>
-            {% endfor %}
-        </ul>
-        <p>
+        <div class="row"><br></div>
+        <div class="row" >
+            <div class="col-md-6">
+                <h2>Songs:</h2>
+                <table class="table table-hover">
+                    <tbody>
+                            {% for row in rows %}
+                            <tr class="table-default">
+                                <th scope="row"><a href=/songs/{{row.id}}> <h3 class="text-info">{{row.name}}</h3></a>
+                                    <a href="/lyrics/{{row.text.id}}"> Lyrics </a>  
+                                    <a href="{{row.tabs.link}}"> Tabs </a>  
+                                    <a href="/metronome/channel/{{row.bpm.id}}"> {{row.bpm.bpm}}</a>
+                                </th>
+                                <td>
+                                    <a href="/songs/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <form action="/songs/create" method="post">
+                    <div class="form-group">
+                          <label class="col-form-label" for="inputDefault"> <h2 class="text-info">Name song</h2> </label>
+                          <input class="form-control" placeholder="Hello" id="inputDefault" name="name" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelect1"> <h3 class="text-warning"> Lyrics</h3></label>
+                        <select class="form-control" id="exampleSelect1" name="title_text">
+                            {% for row in rows_title_text %}
+                            <option>{{row.title_text}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="exampleSelect1"><h3 class="text-warning"> Tabs</h3></label>
+                        <select class="form-control" id="exampleSelect1" name="link">
+                            {% for row in rows_link %}
+                            <option>{{row.link}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="exampleSelect1"><h3 class="text-warning"> BPM</h3></label>
+                        <select class="form-control" id="exampleSelect1" name="bpm">
+                            {% for row in rows_bpm %}
+                            <option>{{row.bpm}}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
         </div>
     {% endblock %}
     </body>

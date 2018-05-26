@@ -107,9 +107,30 @@ def bpm_calc():
 
 @app.route('/songs')
 def songs():
+    rows_bpm = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
+    rows_title_text = list(Lyrics.select(Lyrics.title_text, Lyrics.id))
     rows = list(Songs.select(Songs.name, Songs.id, Songs.text, Songs.tabs, Songs.bpm))
-    return render_template('songs.html', rows=rows)
+    rows_link = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
+    return render_template('songs.html', rows=rows, rows_bpm=rows_bpm, rows_title_text=rows_title_text, rows_link=rows_link)
 
+@app.route('/songs/create', methods=['POST'])
+def songs_create():
+    name = request.form['name']
+    title_text = request.form['title_text']
+    text = Lyrics.get(Lyrics.title_text == title_text).id
+    bpm_start = request.form['bpm']
+    bpm = Metronome.get(Metronome.bpm == bpm_start).id
+    link_start = request.form['link']
+    link = Tabs.get(Tabs.link == link_start).id
+    Songs.get_or_create(name=name, text=text, tabs=link, bpm=bpm)
+    return redirect(url_for('songs'))
+
+
+@app.route('/songs/delete/<ID>')
+def songs_delete_id(ID):
+    query = Songs.delete().where(Songs.id == ID)
+    query.execute()
+    return redirect(url_for('songs'))
 
 if (__name__ == "__main__"):
     app.run(port = 5000) 
