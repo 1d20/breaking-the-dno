@@ -1,10 +1,10 @@
-## 		/
+## 		/ - home page
 ***
-###		/metronome
-####	/metronome/channel
-####	/metronome/channel/ID
+###		/metronome - you can choose bmp and listen
+####	/metronome/channel - list of channels for the metronome
+####	/metronome/channel/ID - channel metronome 
 ***
-### 	/lyrics
-####	/lyrics/ID
+### 	/lyrics - list of lyrics
+####	/lyrics/ID - the text of the song
 ***
-###		/tabs
+###		/tabs - list of links
