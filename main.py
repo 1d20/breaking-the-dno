@@ -132,5 +132,15 @@ def songs_delete_id(ID):
     query.execute()
     return redirect(url_for('songs'))
 
+
+@app.route('/songs/<ID>')
+def songs_id(ID):
+    name = Songs.get(Songs.id == ID).name
+    text = Songs.get(Songs.id == ID).text
+    bpm = Songs.get(Songs.id == ID).bpm
+    rows_links = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
+    return render_template('songs_id.html', name=name, text=text, bpm=bpm, rows_links=rows_links)
+
+
 if (__name__ == "__main__"):
     app.run(port = 5000) 

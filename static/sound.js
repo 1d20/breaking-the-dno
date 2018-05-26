@@ -255,3 +255,9 @@ function startBpmMetronome() {
 function setTime(){
 	setTimeout(startBpmMetronome(), calMetronome())
 };
+
+function startBpmSongs(bpm) {
+  clearInterval($t);
+  $newbpm = 1000/(bpm/60);
+  $t=setInterval(beep,$newbpm);
+};
