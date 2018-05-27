@@ -238,25 +238,12 @@ $('.start').click(function() {
   $t=setInterval(beep,$newbpm);
 });
 
-function startBpm() {
-  clearInterval($t);
-  var form = document.getElementById('bpm')
-  var bpm = form['value']
-  $newbpm = 1000/(bpm/60);
-  $t=setInterval(beep,$newbpm);
-};
-
-function startBpmMetronome() {
-  clearInterval($t);
-  $newbpm = 1000/(80/60);
-  $t=setInterval(beep,$newbpm);
-};
-
 function setTime(){
 	setTimeout(startBpmMetronome(), calMetronome())
 };
 
 function startBpmSongs(bpm) {
+  bpm = bpm || 80;
   clearInterval($t);
   $newbpm = 1000/(bpm/60);
   $t=setInterval(beep,$newbpm);

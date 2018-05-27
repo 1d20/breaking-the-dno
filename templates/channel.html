@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from "macros.html" import metronomes %}
 <!doctype html>
 <html>
     <head>
@@ -10,14 +11,7 @@
         <div class="col-md-4">
 		<h2>Metronomes:</h2>
 		<p>
-		<ul>
-			{% for row in rows %}
-					<li> 
-						<a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
-						<a href="/metronome/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
-					</li>
-			{% endfor %}
-		</ul>
+		{{ metronomes(rows) }}
 		<p>
 		</div>
         <div class="col-md-2">

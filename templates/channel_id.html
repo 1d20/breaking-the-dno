@@ -21,7 +21,7 @@
         <div class="col-md-2">
         <h2>Metronomes:</h2>
         <ul><h4>
-            {% for row in rows %}           
+            {% for row in rows %}
                     <li> 
                         <a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
                     </li>
@@ -29,9 +29,9 @@
         </h4></ul>
         </div>
         </div>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script src="/static/sound.js"></script>
-        <script>startBpm()</script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="/static/sound.js"></script>
+        <script>startBpmSongs({{bpm}})</script>
     {% endblock %}
     </body>
 </html>
