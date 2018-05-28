@@ -43,7 +43,7 @@ def bpm_save(ID):
 
 @app.route("/")
 def hello():
-    return render_template('main.html')
+    return render_template('index.html')
 
 
 @app.route("/metronome")
@@ -109,9 +109,17 @@ def bpm_calc():
 def songs():
     rows_bpm = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
     rows_title_text = list(Lyrics.select(Lyrics.title_text, Lyrics.id))
-    rows = list(Songs.select(Songs.name, Songs.id, Songs.text, Songs.tabs, Songs.bpm))
     rows_link = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
+    # from ipdb import set_trace; set_trace()
+    option = request.args.get('optionsHeaders')
+    if option == "option1":
+        rows = list(Songs.select(Songs.name, Songs.id, Songs.text, Songs.tabs, Songs.bpm))
+    elif option == "option2":
+        rows = list(Songs.select(Songs.name, Songs.id, Songs.text, Songs.tabs, Songs.bpm).where(Songs.cover == 1))
+    else:
+        rows = list(Songs.select(Songs.name, Songs.id, Songs.text, Songs.tabs, Songs.bpm).where(Songs.cover == 0))
     return render_template('songs.html', rows=rows, rows_bpm=rows_bpm, rows_title_text=rows_title_text, rows_link=rows_link)
+
 
 @app.route('/songs/create', methods=['POST'])
 def songs_create():
@@ -122,7 +130,12 @@ def songs_create():
     bpm = Metronome.get(Metronome.bpm == bpm_start).id
     link_start = request.form['link']
     link = Tabs.get(Tabs.link == link_start).id
-    Songs.get_or_create(name=name, text=text, tabs=link, bpm=bpm)
+    option = request.form['optionsRadios']
+    if option == "option1":
+        cover = True
+    else: 
+        cover = False
+    Songs.get_or_create(name=name, text=text, tabs=link, bpm=bpm, cover=cover)
     return redirect(url_for('songs'))
 
 
@@ -142,5 +155,5 @@ def songs_id(ID):
     return render_template('songs_id.html', name=name, text=text, bpm=bpm, link=link)
 
 
-if (__name__ == "__main__"):
-    app.run(port = 5000) 
+if __name__ == "__main__":
+    app.run(debug=True) 

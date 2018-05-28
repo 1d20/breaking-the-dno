@@ -1,5 +1,5 @@
 import sqlite3
-from peewee import Model, SqliteDatabase, CharField, IntegerField, TextField, ForeignKeyField
+from peewee import Model, SqliteDatabase, CharField, IntegerField, TextField, ForeignKeyField, BooleanField
 
 
 DB = SqliteDatabase('btd.db')
@@ -38,6 +38,7 @@ class Songs(Model):
     text = ForeignKeyField(Lyrics)
     tabs = ForeignKeyField(Tabs)
     bpm = ForeignKeyField(Metronome)
+    cover = BooleanField()
 
 
     class Meta:

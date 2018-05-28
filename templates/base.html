@@ -5,13 +5,6 @@
         <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.css">  
         <link rel="stylesheet" href="/static/bootstrap_override.css">
         <title>{% block title %}{% endblock %}</title>
-        <style>
-        body{
-          background: url(/static/logotype.jpg);
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        </style>
     {% endblock %}
     </head>
     <body>
@@ -19,6 +12,9 @@
         <a class="navbar-brand" href="/">Breaking The Dno</a>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/metronome">Metronome</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/lyrics">Lyrics</a>
                 </li>
