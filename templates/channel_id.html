@@ -1,37 +1,28 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-    <head>
-        <h1>{% block title %}{{name}}{% endblock %}</h1>
-    </head>
-    <body>
-    {% block content %}
-        <div class="row" >
-        <div class="col-md-4">
-        <form>
-            <h1>BMP {{name}}:</h1>
-            <div><input type="number" name="bpm" id="bpm" value={{bpm}} size="3" disabled /></div>
-            <p><div class="stop btn">Stop</div></p>
-        </form>
-        <p><h2> Change BMP {{name}}:</h2></p>
-        <form action="/metronome/update/{{ID}}" method="post">
-            <input type="number" name="number" value={{bpm}} maxlength=3 min=40 max=218 step="any" />
-            <p><input type="submit" class="btn btn-primary btn-sm" value="Save"/></p>
-        </form></p>
-        </div>
-        <div class="col-md-6">
-        <h2>Metronomes:</h2>
-        <ul><h4>
-            {% for row in rows %}
-                    <li> 
-                        <a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
-                    </li>
-            {% endfor %}
-        </h4></ul>
-        </div>
-        </div>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="/static/sound.js"></script>
-        <script>startBpmSongs({{bpm}})</script>
-    {% endblock %}
-    </body>
-</html>
+{% from "macros.html" import show_metronome, metronomes %}
+
+{% block title %}{{name}}{% endblock %}
+
+{% block content %}
+    <div class="row" >
+    <div class="col-md-4">
+    <form>
+        <h1>BMP {{name}}:</h1>
+        <div><input type="number" name="bpm" id="bpm" value={{bpm}} size="3" disabled /></div>
+        <p><div class="stop btn">Stop</div></p>
+    </form>
+    <p><h2> Change BMP {{name}}:</h2></p>
+    <form action="/metronome/update/{{ID}}" method="post">
+        <input type="number" name="number" value={{bpm}} maxlength=3 min=40 max=218 step="any" />
+        <p><input type="submit" class="btn btn-primary btn-sm" value="Save"/></p>
+    </form></p>
+    </div>
+    <div class="col-md-6">
+    <h2>Metronomes:</h2>
+        <h4>
+            {{ metronomes(rows) }}
+        </h4>
+    </div>
+    </div>
+    {{show_metronome (False, bpm) }}
+{% endblock %}

@@ -22,6 +22,8 @@
  * limitations under the License.
  */
 
+$(document).ready(function(){
+
 function createAudioContext()
 {
 	var contextClass = (window.AudioContext ||
@@ -243,8 +245,11 @@ function setTime(){
 };
 
 function startBpmSongs(bpm) {
+	console.log(bpm)
   bpm = bpm || 80;
   clearInterval($t);
   $newbpm = 1000/(bpm/60);
   $t=setInterval(beep,$newbpm);
 };
+
+});

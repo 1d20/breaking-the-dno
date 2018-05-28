@@ -1,21 +1,13 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
-    <head>
-    {% block head %}
-        <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.css">  
-        <link rel="stylesheet" href="/static/bootstrap_override.css">  
-        <style>
-        body{
-          background: url(/static/logotype.jpg);
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-        </style> 
-        <title>{% block title %}Main{% endblock %}</title>
-    {% endblock %}    
-    <body>
-    {% block content %}
-    {% endblock %}
-    </body>
-</html>
+
+{% block title %}Main{% endblock %}
+
+{% block head_ext %}
+    <style>
+    body{
+      background: url(/static/logotype.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    </style> 
+{% endblock %}    

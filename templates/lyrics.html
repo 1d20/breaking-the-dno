@@ -1,50 +1,44 @@
 {% extends 'base.html' %}
-<!doctype html>
-<html>
-    <head>
-        <h1>{% block title %}Lyrics{% endblock %}</h1>
-    </head>
-    <body>
-    {% block content %}
-        <div class="row"><br></div>
-        <div class="row" >
-            <div class="col-md-4">
-                <h1>Lyrics</h1>
-                <table class="table table-hover">
-                    <tbody>
-                        {% for row in rows %}
-                        <tr class="table-default">
-                            <th scope="row"><a href="/lyrics/{{row.id}}"> {{row.title_text}}</a></th>
-                            <td>
-                                <a href="/lyrics/delete/{{row.id}}"> 
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <form action="/lyrics/create" method="post">
-                    <fieldset>
-                        <legend>Create new song</legend>
-                        <div class="form-group">
-                            <label for="sTitle">Title</label>
-                            <input type="text" class="form-control" name="name" id="sTitle" placeholder="Enter title">
-                        </div>
-                        <div class="form-group">
-                            <label for="sText">Text</label>
-                            <textarea class="form-control" name="content" id="sText" cols="40" rows="10"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="col-md-2"></div>
+
+{% block title %}Lyrics{% endblock %}
+
+{% block content %}
+    <div class="row" >
+        <div class="col-md-4">
+            <h1>Lyrics</h1>
+            <table class="table table-hover">
+                <tbody>
+                    {% for row in rows %}
+                    <tr class="table-default">
+                        <th scope="row"><a href="/lyrics/{{row.id}}"> {{row.title_text}}</a></th>
+                        <td>
+                            <a href="/lyrics/delete/{{row.id}}"> 
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endblock %}
-    </body>
-</html>
+        <div class="col-md-6">
+            <form action="/lyrics/create" method="post">
+                <fieldset>
+                    <legend>Create new song</legend>
+                    <div class="form-group">
+                        <label for="sTitle">Title</label>
+                        <input type="text" class="form-control" name="name" id="sTitle" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="sText">Text</label>
+                        <textarea class="form-control" name="content" id="sText" cols="40" rows="10"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% from "macros.html" import show_metronome %}
-<!DOCTYPE html>
-    <head>
-        <h1>{% block title %}Metronome{% endblock %}</h1>
-    </head>
-    <body>
-    {% block content %}
-        {{ show_metronome(True) }}
-        <p><a href="/metronome/channel"> <input type="button" class="btn btn-info" value="Channels"/></a></p>
-    {% endblock %}
-    </body>
-</html>
+
+{% block title %}Metronome{% endblock %}
+
+{% block content %}
+    {{ show_metronome(True, 80) }}
+    <a href="/metronome/channel"> <input type="button" class="btn btn-info" value="Channels"/></a>
+{% endblock %}
