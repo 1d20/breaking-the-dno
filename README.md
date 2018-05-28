@@ -1,5 +1,7 @@
-# breaking-the-dno
-Official web service
+# Breaking The Dno
+Official web service      
+
+[![](https://raw.githubusercontent.com/1d20/breaking-the-dno/master/static/logotype.jpg )](https://1d20dev.com) 
 
 ## [Description of the project](https://github.com/1d20/breaking-the-dno/blob/master/about.md)
 
