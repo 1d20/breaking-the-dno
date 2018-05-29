@@ -1,34 +1,45 @@
 {% extends 'base.html' %}
-<!doctype html>
-<html>
-    <head>
-        <h1>{% block title %}Tabs{% endblock %}</h1>
-    </head>
-    <body>
-    {% block content %}
-        <div class="row"><br></div>
-        <div class="row" >
-            <div class="col-md-4">
-        <h2>Tabs:</h2>
-        <ul>
-            {% for row in rows %}           
-                    <li> 
-                        <a href="{{row.link}}"> {{row.name}}</a>  
-                        <a href="/tabs/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
-                    </li>
-            {% endfor %}
-        </ul>
-            </div>
-                <div class="col-md-6">
-                    <form action="/tabs/create" method="post">
-                        <input type="text" name="name" value="Name tab" />
-                        <input type="text" name="content" value="link" />
-                        <input type="submit" class="btn btn-primary" value="Create"/>
-                    </form>
-            </div>
-            <div class="col-md-2"></div>
+
+{% block title %}Tabs{% endblock %}
+
+
+{% block content %}
+    <div class="row"><br></div>
+    <div class="row" >
+        <div class="col-md-4">
+            <legend><h2>Tabs:</h2></legend>
+            <table class="table table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr class="table-default">
+                        <td><a href="{{row.link}}">{{row.name}}</a></td>
+                        <td align="right">
+                            <a href="/tabs/delete/{{row.id}}"> 
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    {% endblock %}
-    </body>
-</html>
+        <div class="col-md-6">
+            <form action="/tabs/create" method="post">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name tab</legend></h2> </label>
+                    <input class="form-control" placeholder="Google" id="inputDefault" name="name" type="text">
+                    <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Link</legend></h2> </label>
+                    <input class="form-control" placeholder="https://www.google.com.ua/" id="inputDefault" name="content" type="text">
+                    <input type="submit" class="btn btn-primary" value="Create"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

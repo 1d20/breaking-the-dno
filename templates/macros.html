@@ -1,12 +1,26 @@
 {% macro metronomes(rows) %}
-	<ul>
-		{% for row in rows %}
-				<li> 
-					<a href="/metronome/channel/{{row.id}}"> {{row.name}} - {{row.bpm}} </a>  
-					<a href="/metronome/delete/{{row.id}}"> <input type="button" class="btn btn-outline-info" value="X"/></a>
-				</li>
-		{% endfor %}
-	</ul>
+	<table class="table table-hover">
+	    <thead>
+	        <th>Name</th>
+	        <th>bpm</th>
+	        <th></th>
+	    </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr class="table-default">
+                <td><a href="/metronome/channel/{{row.id}}">{{row.name}}</a></td>
+                <td><a href="/metronome/channel/{{row.id}}">{{row.bpm}}</a></td> 
+                <td align="right">
+                    <a href="/metronome/delete/{{row.id}}"> 
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endmacro %}
 
 {% macro show_metronome(condition, bpm) %}
@@ -14,13 +28,13 @@
  	<script src="/static/sound.js"></script>
 	{% if condition == True %}
 		<form>
-            <h1>BMP:</h1>
+           	<legend><h1>BMP:</h1></legend>
             <div><input type="number" id="button" name="bpm" value="80" size="3" min=40 max=218 /></div>
-            <div id="click-block" class="start btn btn-success">Start</div>
+            <div class="start btn btn-success">Start</div>
             <div class="stop btn btn-danger">Stop</div>
-        </form>
-    	<script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+        <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        </form>
 	{% else %}
         <script> $(document).ready(function(){startBpmSongs({{bpm}})});</script>
 	{% endif %}	

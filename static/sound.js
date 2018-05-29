@@ -245,11 +245,18 @@ function setTime(){
 };
 
 function startBpmSongs(bpm) {
-	console.log(bpm)
   bpm = bpm || 80;
   clearInterval($t);
   $newbpm = 1000/(bpm/60);
   $t=setInterval(beep,$newbpm);
 };
+
+var $button = $("myActiveButton")
+	$body = $('body');
+
+$button.on('click', function () {
+  $button.toggleClass('active');
+});
+
 
 });

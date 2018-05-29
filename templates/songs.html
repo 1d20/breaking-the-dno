@@ -6,13 +6,13 @@
     <div class="row" >
         <div class="col-md-6">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <a href="/songs?cover=1"  class="btn btn-primary active">
+                <a href="/songs?cover=1"  class="btn btn-primary" id="myActiveButton">
                     <input  autocomplete="off" type="checkbox"> Cover
                 </a>
-                <a href="/songs" class="btn btn-primary" >
-                    <input autocomplete="off" type="checkbox"> All
+                <a href="/songs" class="btn btn-primary active" id="myActiveButton">
+                    <input  autocomplete="off" type="checkbox"> All
                 </a>
-                <a href="/songs?cover=0" class="btn btn-primary">
+                <a href="/songs?cover=0" class="btn btn-primary" id="myActiveButton">
                     <input autocomplete="off" type="checkbox"> Original
                 </a>
             </div>
@@ -46,30 +46,30 @@
         <div class="col-md-6">
             <form action="/songs/create" method="post">
                 <div class="form-group">
-                      <label class="col-form-label" for="inputDefault"> <h2 class="text-info">Name song</h2> </label>
+                      <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name song</legend></h2> </label>
                       <input class="form-control" placeholder="Hello" id="inputDefault" name="name" type="text">
                 </div>
                 <div class="form-group">
-                    <label for="exampleSelect1"> <h3 class="text-warning"> Lyrics</h3></label>
+                    <label for="exampleSelect1"> <h3 class="text-warning"> <legend>Lyrics</legend></h3></label>
                     <select class="form-control" id="exampleSelect1" name="title_text">
                         {% for row in rows_title_text %}
                         <option>{{row.title_text}}</option>
                         {% endfor %}
                     </select>
-                    <label for="exampleSelect1"><h3 class="text-warning"> Tabs</h3></label>
+                    <label for="exampleSelect1"><h3 class="text-warning"> <legend>Tabs</legend></h3></label>
                     <select class="form-control" id="exampleSelect1" name="link">
                         {% for row in rows_link %}
                         <option>{{row.name}}</option>
                         {% endfor %}
                     </select>
-                    <label for="exampleSelect1"><h3 class="text-warning"> BPM</h3></label>
+                    <label for="exampleSelect1"><h3 class="text-warning"> <legend>BPM</legend></h3></label>
                     <select class="form-control" id="exampleSelect1" name="bpm">
                         {% for row in rows_bpm %}
                         <option>{{row.name}}</option>
                         {% endfor %}
                     </select>
                     <fieldset class="form-group">
-                        <legend class="text-warning" >Is this a cover?</legend>
+                        <legend>Is this a cover?</legend>
                         <div class="form-check">
                             <label class="form-check-label">
                             <input class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">

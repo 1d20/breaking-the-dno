@@ -1,21 +1,15 @@
 {% extends 'base.html' %}
-<!doctype html>
-<html>
-    <head>
-        <h1>{% block title %}{{title_text}}{% endblock %}</h1>
-    </head>
-    <body>
-    {% block content %}
-        <div class="row"><br></div>
-        <div class="row" >
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="sText"><h1>{{title_text}}</h1></label>
-                    <textarea class="form-control" name="content" id="sText" cols="20" rows="15" readonly>{{text}}</textarea>
-                </div>
+
+{% block title %}{{title_text}}{% endblock %}
+{% block content %}
+    <div class="row"><br></div>
+    <div class="row" >
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sText"><legend><h1>{{title_text}}</h1></legend></label>
+                <textarea class="form-control" name="content" id="sText" cols="20" rows="15" readonly>{{text}}</textarea>
             </div>
         </div>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    {% endblock %}
-    </body>
-</html>
+    </div>
+{% endblock %}
+

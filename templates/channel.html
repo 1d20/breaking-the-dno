@@ -1,28 +1,22 @@
 {% extends 'base.html' %}
 {% from "macros.html" import metronomes %}
-<!doctype html>
-<html>
-    <head>
-        <h1>{% block title %}Channels{% endblock %}</h1>
-    </head>
-    <body>
-	{% block content %}
-        <div class="row" >
-        <div class="col-md-4">
-		<h2>Metronomes:</h2>
-		<p>
-		{{ metronomes(rows) }}
-		<p>
+
+{% block title %}Channels{% endblock %}
+
+{% block content %}
+    <div class="row" >
+		<div class="col-md-6">
+			<legend><h2>Metronomes:</h2></legend>
+			{{ metronomes(rows) }}
 		</div>
-        <div class="col-md-2">
+		<div class="col-md-6">
 			<form action="{{ url_for('channel_create') }}" method="post">
-				<input type="text" name="name" value="Name of the metronome" />
+                <div class="form-group">
+	                <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name of the metronome</legend></h2> </label>
+	                <input class="form-control" placeholder="Fast" id="inputDefault" name="name" type="text">
+                </div>
 				<input type="submit" class="btn btn-primary" value="Create"/>
 			</form>
-		</p>
 		</div>
-        </div>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-	{% endblock %}
-    </body>
-</html>
+    </div>
+{% endblock %}

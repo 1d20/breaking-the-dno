@@ -6,17 +6,15 @@
 {% block content %}
     <div class="row"><br></div>
     <div class="row" >
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group">
-                <label for="sText"><h1>{{song.name}} - {{song.bpm.bpm}} bpm</h1></label>
+                <label for="sText"><legend><h1>{{song.name}} - {{song.bpm.bpm}} bpm</h1></legend></label>
                 <textarea class="form-control" name="content" id="sText" cols="40" rows="15" readonly>{{song.text.text}}</textarea>
             </div>
         </div>
-            <div class="col-md-6">
-                <h4>
-                    <a href="{{song.tabs.link}}"> {{song.tabs.name}}</a> 
-                </h4>
-            </div>
+        <div class="col-md-6">
+            <legend><h4> Link for this metronome:  <a href="{{song.tabs.link}}"> {{song.tabs.name}}</a></h4></legend>
         </div>
+    </div>
     {{ show_metronome(False, song.bpm.bpm) }}
 {% endblock %}
