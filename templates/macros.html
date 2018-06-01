@@ -9,14 +9,14 @@
             {% for row in rows %}
             <tr class="table-default">
                 <td><a href="/metronome/channel/{{row.id}}">{{row.name}}</a></td>
-                <td><a href="/metronome/channel/{{row.id}}">{{row.bpm}}</a></td> 
-                <td align="right">
-                    <a href="/metronome/delete/{{row.id}}"> 
-                    <button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </a>
-                </td>
+                <td><a href="/metronome/channel/{{row.id}}">{{row.bpm}}</a></td>
+                <form action="/metronome/{{row.id}}" method="post">
+                    <td align="right">
+                        <button type="submit" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </td>
+                </form> 
             </tr>
             {% endfor %}
         </tbody>
@@ -36,6 +36,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         </form>
 	{% else %}
-        <script> $(document).ready(function(){startBpmSongs({{bpm}})});</script>
+        <script> $( document ).ready(startBpmSongs({{bpm}}));</script>
 	{% endif %}	
 {% endmacro %}

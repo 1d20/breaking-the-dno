@@ -22,7 +22,7 @@
  * limitations under the License.
  */
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
 function createAudioContext()
 {
@@ -230,19 +230,18 @@ function calMetronome(){
 	return now.setSeconds(now.getSeconds() + module)
 }
 
+$(document).ready(function(){
 $('.stop').click(function() {
   clearInterval($t);
 });
+
 
 $('.start').click(function() {
   clearInterval($t);
   $newbpm = 1000/(Math.round($('input').val()/60));
   $t=setInterval(beep,$newbpm);
 });
-
-function setTime(){
-	setTimeout(startBpmMetronome(), calMetronome())
-};
+});
 
 function startBpmSongs(bpm) {
   bpm = bpm || 80;
@@ -251,12 +250,4 @@ function startBpmSongs(bpm) {
   $t=setInterval(beep,$newbpm);
 };
 
-var $button = $("myActiveButton")
-	$body = $('body');
-
-$button.on('click', function () {
-  $button.toggleClass('active');
-});
-
-
-});
+// });
