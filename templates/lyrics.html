@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% set active_page = "lyrics" %}
 
 {% block title %}Lyrics{% endblock %}
 
@@ -12,11 +13,11 @@
                     <tr class="table-default">
                         <th scope="row"><a href="/lyrics/{{row.id}}"> {{row.title_text}}</a></th>
                         <td>
-                            <a href="/lyrics/delete/{{row.id}}"> 
-                            <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </a>
+                            <form action="/lyrics/{{row.id}}" method="post">
+                                <button type="submit" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
@@ -24,7 +25,7 @@
             </table>
         </div>
         <div class="col-md-6">
-            <form action="/lyrics/create" method="post">
+            <form action="/lyrics" method="post">
                 <fieldset>
                     <legend>Create new song</legend>
                     <div class="form-group">

@@ -51,32 +51,32 @@ def metronome():
     return render_template('metronome.html')
 
 
-@app.route("/lyrics")
-def lyrics():
+@app.route('/lyrics')
+def lyrics_list():
     rows = list(Lyrics.select(Lyrics.title_text, Lyrics.id))
     return render_template('lyrics.html', rows=rows)
 
 
-@app.route('/lyrics/delete/<ID>')
-def lyrics_delete_id(ID):
-    query = Lyrics.delete().where(Lyrics.id == ID)
-    query.execute()
-    return redirect(url_for('lyrics'))
-
-
-@app.route('/lyrics/create', methods=['POST'])
+@app.route('/lyrics', methods=['POST'])
 def lyrics_create():
     title_text = request.form['name']
     text = request.form['content']
     Lyrics.get_or_create(title_text=title_text, text=text)
-    return redirect(url_for('lyrics'))
+    return redirect(url_for('lyrics_list'))
 
 
 @app.route('/lyrics/<ID>')
-def lyrics_id(ID):
+def lyrics_retrieve(ID):
     title_text = Lyrics.get(Lyrics.id == ID).title_text
     text = Lyrics.get(Lyrics.id == ID).text
     return render_template('lyrics_id.html', title_text=title_text, text=text)
+
+
+@app.route('/lyrics/<ID>', methods=['POST'])
+def lyrics_delete(ID):
+    query = Lyrics.delete().where(Lyrics.id == ID)
+    query.execute()
+    return redirect(url_for('lyrics_list'))
 
 
 @app.route("/tabs")
