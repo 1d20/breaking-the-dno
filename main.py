@@ -19,7 +19,7 @@ def channel_id(ID):
     return render_template('channel_id.html', ID=ID, rows=rows, bpm=bpm, name=name)
 
 
-@app.route('/metronome/<int:ID>', methods=['DELETE'])
+@app.route('/metronome/delete/<ID>')
 def channel_delete_id(ID):
     query = Metronome.delete().where(Metronome.id == ID)
     query.execute()

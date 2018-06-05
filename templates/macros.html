@@ -10,13 +10,13 @@
             <tr class="table-default">
                 <td><a href="/metronome/channel/{{row.id}}">{{row.name}}</a></td>
                 <td><a href="/metronome/channel/{{row.id}}">{{row.bpm}}</a></td>
-                <form action="/metronome/{{row.id}}" method="post">
                     <td align="right">
-                        <button type="submit" class="close" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <a href="/metronome/delete/{{row.id}}"> 
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </a>
                     </td>
-                </form> 
             </tr>
             {% endfor %}
         </tbody>
