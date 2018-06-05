@@ -31,20 +31,20 @@
                         <td><a href="/lyrics/{{row.text.id}}"> Lyrics</a></td> 
                         <td><a href="{{row.tabs.link}}"> Tabs </a></td>
                         <td><a href="/metronome/channel/{{row.bpm.id}}"> {{row.bpm.bpm}}</a></td>
-                        <td align="right">
-                            <a href="/songs/delete/{{row.id}}"> 
-                            <button type="button" class="close" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </a>
-                        </td>
+                        <form action="/songs/{{row.id}}" method="post">
+                            <td align="right">
+                                <button type="submit" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </td>
+                        </form>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="col-md-6">
-            <form action="/songs/create" method="post">
+            <form action="/songs" method="post">
                 <div class="form-group">
                       <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name song</legend></h2> </label>
                       <input class="form-control" placeholder="Hello" id="inputDefault" name="name" type="text">

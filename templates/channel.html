@@ -10,12 +10,12 @@
 			{{ metronomes(rows) }}
 		</div>
 		<div class="col-md-6">
-			<form action="{{ url_for('channel_create') }}" method="post">
+			<form action="/metronome" method="post">
                 <div class="form-group">
 	                <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name of the metronome</legend></h2> </label>
 	                <input class="form-control" placeholder="Fast" id="inputDefault" name="name" type="text">
                 </div>
-				<input type="submit" class="btn btn-primary" value="Create"/>
+				<button type="submit" class="btn btn-primary" value="Create"> Create </button>
 			</form>
 		</div>
     </div>

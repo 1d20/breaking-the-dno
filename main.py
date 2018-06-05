@@ -6,7 +6,7 @@ app = Flask(__name__, static_url_path="/static")
 
 
 @app.route('/metronome/channel')
-def channel():
+def channel_list():
     rows = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
     return render_template('channel.html', rows=rows)
 
@@ -19,26 +19,26 @@ def channel_id(ID):
     return render_template('channel_id.html', ID=ID, rows=rows, bpm=bpm, name=name)
 
 
-@app.route('/metronome/delete/<ID>')
+@app.route('/metronomes/<ID>', methods=['POST'])
 def channel_delete_id(ID):
     query = Metronome.delete().where(Metronome.id == ID)
     query.execute()
-    return redirect(url_for('channel'))
+    return redirect(url_for('channel_list'))
 
 
-@app.route('/metronome/create', methods=['POST'])
+@app.route('/metronome', methods=['POST'])
 def channel_create():
     name = request.form['name']
     Metronome.get_or_create(name=name, bpm=40)
-    return redirect(url_for('channel'))
+    return redirect(url_for('channel_list'))
 
 
-@app.route('/metronome/update/<ID>', methods=['POST'])
-def bpm_save(ID):
+@app.route('/metronome/<ID>', methods=['POST'])
+def bpm_update(ID):
     bpm = request.form['number']
     query = Metronome.update(bpm=bpm).where(Metronome.id == ID)
     query.execute()
-    return redirect(url_for('channel'))
+    return redirect(url_for('channel_list'))
 
 
 @app.route("/")
@@ -80,28 +80,28 @@ def lyrics_delete(ID):
 
 
 @app.route("/tabs")
-def tabs():
+def tabs_list():
     rows = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
     return render_template('tabs.html', rows=rows)
 
 
-@app.route('/tabs/create', methods=['POST'])
+@app.route('/tabs', methods=['POST'])
 def tabs_create():
     name = request.form['name']
     link = request.form['content']
     Tabs.get_or_create(name=name, link=link)
-    return redirect(url_for('tabs'))
+    return redirect(url_for('tabs_list'))
 
 
-@app.route('/tabs/delete/<ID>')
+@app.route('/tabs/<ID>', methods=['POST'])
 def tabs_delete_id(ID):
     query = Tabs.delete().where(Tabs.id == ID)
     query.execute()
-    return redirect(url_for('tabs'))
+    return redirect(url_for('tabs_list'))
 
 
 @app.route('/songs')
-def songs():
+def songs_list():
     rows_bpm = list(Metronome.select(Metronome.name, Metronome.bpm, Metronome.id))
     rows_title_text = list(Lyrics.select(Lyrics.title_text, Lyrics.id))
     rows_link = list(Tabs.select(Tabs.name, Tabs.id, Tabs.link))
@@ -114,7 +114,7 @@ def songs():
     return render_template('songs.html', rows=list(results), rows_bpm=rows_bpm, rows_title_text=rows_title_text, rows_link=rows_link)
 
 
-@app.route('/songs/create', methods=['POST'])
+@app.route('/songs', methods=['POST'])
 def songs_create():
     name = request.form['name']
     title_text = request.form['title_text']
@@ -129,14 +129,14 @@ def songs_create():
     else: 
         cover = False
     Songs.get_or_create(name=name, text=text, tabs=link, bpm=bpm, cover=cover)
-    return redirect(url_for('songs'))
+    return redirect(url_for('songs_list'))
 
 
-@app.route('/songs/delete/<ID>')
+@app.route('/songs/<ID>', methods=['POST'])
 def songs_delete_id(ID):
     query = Songs.delete().where(Songs.id == ID)
     query.execute()
-    return redirect(url_for('songs'))
+    return redirect(url_for('songs_list'))
 
 
 @app.route('/songs/<ID>')

@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-4">
             <legend><h2> Change bpm {{name}}:</h2></legend>
-            <form action="/metronome/update/{{ID}}" method="post">
+            <form action="/metronome/{{ID}}" method="post">
                 <input type="number" name="number" value={{bpm}} maxlength=3 min=40 max=218 step="any" />
                 <p><input type="submit" class="btn btn-primary btn-sm" value="Save"/></p>
             </form></p>

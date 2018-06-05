@@ -18,11 +18,11 @@
                     <tr class="table-default">
                         <td><a href="{{row.link}}">{{row.name}}</a></td>
                         <td align="right">
-                            <a href="/tabs/delete/{{row.id}}"> 
-                            <button type="button" class="close" aria-label="Close">
+                        <form action="/tabs/{{row.id}}" method="post">
+                            <button type="submit" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            </a>
+                        </form>
                         </td>
                     </tr>
                     {% endfor %}
@@ -30,7 +30,7 @@
             </table>
         </div>
         <div class="col-md-6">
-            <form action="/tabs/create" method="post">
+            <form action="/tabs" method="post">
                 <div class="form-group">
                     <label class="col-form-label" for="inputDefault"> <h2 class="text-info"> <legend>Name tab</legend></h2> </label>
                     <input class="form-control" placeholder="Google" id="inputDefault" name="name" type="text">

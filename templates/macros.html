@@ -11,11 +11,11 @@
                 <td><a href="/metronome/channel/{{row.id}}">{{row.name}}</a></td>
                 <td><a href="/metronome/channel/{{row.id}}">{{row.bpm}}</a></td>
                     <td align="right">
-                        <a href="/metronome/delete/{{row.id}}"> 
-                            <button type="button" class="close" aria-label="Close">
+                        <form action="/metronomes/{{row.id}}" method="post">
+                            <button type="submit" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </a>
+                        </form>
                     </td>
             </tr>
             {% endfor %}
